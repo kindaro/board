@@ -23,6 +23,8 @@ display = do
     flush
 
 reshape :: ReshapeCallback
-reshape size = do
+reshape size @ (Size x y) = do
     viewport $= (Position 0 0, size)
+    matrixMode $= Projection
+    ortho $= ( x / y )
     postRedisplay Nothing
